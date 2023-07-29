@@ -35,12 +35,6 @@ type RenderChildren<Values = any> = (form: FormInstance<Values>) => React.ReactN
 type RcFieldProps<Values = any> = Omit<FieldProps<Values>, 'children'>;
 type ChildrenType<Values = any> = RenderChildren<Values> | React.ReactNode;
 
-type CustomFeedbackIconsType = (itemStatus: {
-  status: ValidateStatus;
-  errors?: React.ReactNode[];
-  warnings?: React.ReactNode[];
-}) => { [key in ValidateStatus]?: React.ReactNode };
-
 interface MemoInputProps {
   value: any;
   update: any;
@@ -69,7 +63,6 @@ export interface FormItemProps<Values = any>
   children?: ChildrenType<Values>;
   id?: string;
   hasFeedback?: boolean;
-  customFeedbackIcons?: CustomFeedbackIconsType;
   validateStatus?: ValidateStatus;
   required?: boolean;
   hidden?: boolean;
