@@ -4,6 +4,7 @@ import { render, unmount } from 'rc-util/lib/React/render';
 import raf from 'rc-util/lib/raf';
 import * as React from 'react';
 import { getTargetWaveColor } from './util';
+import type { ShowWaveEffect } from './useWave';
 
 function validateNum(value: number) {
   return Number.isNaN(value) ? 0 : value;
@@ -125,13 +126,15 @@ const WaveEffect: React.FC<WaveEffectProps> = (props) => {
   );
 };
 
-export default function showWaveEffect(node: HTMLElement, className: string) {
+const showWaveEffect: ShowWaveEffect = (node, { className }) => {
   // Create holder
   const holder = document.createElement('div');
   holder.style.position = 'absolute';
-  holder.style.left = `0px`;
-  holder.style.top = `0px`;
+  holder.style.left = '0px';
+  holder.style.top = '0px';
   node?.insertBefore(holder, node?.firstChild);
 
   render(<WaveEffect target={node} className={className} />, holder);
-}
+};
+
+export default showWaveEffect;
